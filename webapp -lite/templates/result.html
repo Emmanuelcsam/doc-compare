@@ -1,0 +1,249 @@
+<!-- result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .accordion-button { font-weight: bold; }
+        .entity { font-weight: bold; padding: 2px; border-radius: 3px; }
+        .entity-PERSON { background-color: #ffebee; }
+        .entity-ORG { background-color: #e3f2fd; }
+        .entity-GPE { background-color: #e8f5e9; }
+        .entity-DATE { background-color: #fff3e0; }
+        .entity-MONEY { background-color: #f3e5f5; }
+        .entity-OTHER { background-color: #fafafa; }
+        .diff-table { margin-bottom: 20px; }
+        .diff-table table { width: 100%; border-collapse: collapse; }
+        .diff-table td { padding: 5px; border: 1px solid #ddd; }
+        .diff-table .diff_add { background-color: #d4edda; }
+        .diff-table .diff_chg { background-color: #fff3cd; }
+        .diff-table .diff_sub { background-color: #f8d7da; }
+        pre { white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">Comparison Results: {{ filename1 }} vs {{ filename2 }}</h1>
+        
+        <div class="accordion" id="comparisonAccordion">
+            <!-- Summaries -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#summaries">
+                        Summaries
+                    </button>
+                </h2>
+                <div id="summaries" class="accordion-collapse collapse show">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Summary of {{ filename1 }}</h4>
+                                <ul>
+                                    {% for item in sum1_data %}
+                                    <li>
+                                        <span {% if item.highlighted %}dangerouslySetInnerHTML="{{ item.highlighted|safe }}"{% else %}>{{ item.text }}{% endif %}</span>
+                                        (Entities: {{ item.entities }}) {% if item.source %}(Paragraph {{ item.source }}){% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Summary of {{ filename2 }}</h4>
+                                <ul>
+                                    {% for item in sum2_data %}
+                                    <li>
+                                        <span {% if item.highlighted %}dangerouslySetInnerHTML="{{ item.highlighted|safe }}"{% else %}>{{ item.text }}{% endif %}</span>
+                                        (Entities: {{ item.entities }}) {% if item.source %}(Paragraph {{ item.source }}){% endif %}
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Entities -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#entities">
+                        Named Entity Comparison
+                    </button>
+                </h2>
+                <div id="entities" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <h4>Common Entities</h4>
+                                <ul>
+                                    {% for ent, label in common_ents %}
+                                    <li>{{ ent }} ({{ label }})</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Unique to {{ filename1 }}</h4>
+                                <ul>
+                                    {% for ent, label in unique_ents1 %}
+                                    <li>{{ ent }} ({{ label }})</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <h4>Unique to {{ filename2 }}</h4>
+                                <ul>
+                                    {% for ent, label in unique_ents2 %}
+                                    <li>{{ ent }} ({{ label }})</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sentiments -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sentiments">
+                        Sentiment Comparison
+                    </button>
+                </h2>
+                <div id="sentiments" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>{{ filename1 }} (Avg: {{ avg_sent1|round(2) }})</h4>
+                                <h5>Positive Paragraphs</h5>
+                                <ul>
+                                    {% for para, text, score in pos1 %}
+                                    <li>Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                                    {% endfor %}
+                                </ul>
+                                <h5>Negative Paragraphs</h5>
+                                <ul>
+                                    {% for para, text, score in neg1 %}
+                                    <li>Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>{{ filename2 }} (Avg: {{ avg_sent2|round(2) }})</h4>
+                                <h5>Positive Paragraphs</h5>
+                                <ul>
+                                    {% for para, text, score in pos2 %}
+                                    <li>Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                                    {% endfor %}
+                                </ul>
+                                <h5>Negative Paragraphs</h5>
+                                <ul>
+                                    {% for para, text, score in neg2 %}
+                                    <li>Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Topics -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#topics">
+                        Topic Modeling Comparison
+                    </button>
+                </h2>
+                <div id="topics" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Topic</th>
+                                    <th>Words</th>
+                                    <th>{{ filename1 }} Weight</th>
+                                    <th>{{ filename2 }} Weight</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for topic in topic_data %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ topic.words }}</td>
+                                    <td>{{ topic.weight1|round(2) }}</td>
+                                    <td>{{ topic.weight2|round(2) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Similarities -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#similarities">
+                        Similar Paragraphs (with Diff Highlights)
+                    </button>
+                </h2>
+                <div id="similarities" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        {% for pair in similar_pairs %}
+                        <div class="card mb-3">
+                            <div class="card-header">
+                                Para {{ pair.para1 }} ({{ filename1 }}) similar to Para {{ pair.para2 }} ({{ filename2 }}) (Score: {{ pair.score|round(2) }}) (Entity Overlap: {{ pair.overlap }})
+                            </div>
+                            <div class="card-body diff-table">
+                                {{ pair.diff_table | safe }}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Differences -->
+            <div class="accordion-item">
+                <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#differences">
+                        Unique Content (Differences)
+                    </button>
+                </h2>
+                <div id="differences" class="accordion-collapse collapse">
+                    <div class="accordion-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Unique to {{ filename1 }}</h4>
+                                <ul>
+                                    {% for para, text, highlighted, sent in unique1 %}
+                                    <li>
+                                        <pre>Para {{ para }} (Sent: {{ sent|round(2) }}): {{ highlighted | safe }}</pre>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Unique to {{ filename2 }}</h4>
+                                <ul>
+                                    {% for para, text, highlighted, sent in unique2 %}
+                                    <li>
+                                        <pre>Para {{ para }} (Sent: {{ sent|round(2) }}): {{ highlighted | safe }}</pre>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <a href="/" class="btn btn-secondary mt-4">Back to Home</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

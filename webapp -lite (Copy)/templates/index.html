@@ -1,0 +1,50 @@
+<!-- Updated index.html - added more options if needed, but kept similar -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Document Comparison Tool - Enhanced</title>
+        <style>
+            .entity { font-weight: bold; }
+            .entity-PERSON { color: red; }
+            .entity-ORG { color: blue; }
+            .entity-LOC { color: green; }
+            /* Add more styles for other entity types */
+        </style>
+    </head>
+<body>
+    <h1>Enhanced Document Comparison Tool</h1>
+    <p>Upload two documents to compare with advanced NLP: detailed summaries, entities, keyphrases, sentiments, topics, readability, semantic similarities, and a comprehensive natural language report.</p>
+
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data">
+        <div>
+            <label for="file1">First Document:</label>
+            <input type="file" id="file1" name="file1">
+            <p>Supported formats: TXT, PDF, DOCX, MD</p>
+        </div>
+        <div>
+            <label for="file2">Second Document:</label>
+            <input type="file" id="file2" name="file2">
+            <p>Supported formats: TXT, PDF, DOCX, MD</p>
+        </div>
+
+        <div>
+            <label for="summary_sentences">Summary Sentences (Extractive):</label>
+            <input type="number" id="summary_sentences" name="summary_sentences" value="50">
+        </div>
+
+        <div>
+            <label for="similarity_threshold">Similarity Threshold:</label>
+            <input type="number" step="0.1" id="similarity_threshold" name="similarity_threshold" value="0.5">
+        </div>
+
+        <button type="submit">Compare Documents</button>
+    </form>
+
+</body>
+</html>

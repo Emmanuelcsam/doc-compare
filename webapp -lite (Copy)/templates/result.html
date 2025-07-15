@@ -1,0 +1,211 @@
+<!-- Updated result.html with more sections and details -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>Comparison Results</title>
+        <style>
+            table, th, td { border: 1px solid; border-collapse: collapse; padding: 5px; }
+            .diff_table { font-family: monospace; }
+            .entity { font-weight: bold; }
+            .entity-PERSON { color: red; }
+            .entity-ORG { color: blue; }
+            .entity-GLOC { color: green; }
+            /* more */
+        </style>
+    </head>
+<body>
+    <h1>Comparison Results: {{ filename1 }} vs {{ filename2 }}</h1>
+
+    <h2>Overall Comprehensive Report</h2>
+    <p>{{ overall_report | safe }}</p>
+
+    <h2>Abstractive Summaries</h2>
+    <div>
+        <h3>{{ filename1 }}</h3>
+        <p>{{ ab_sum1 }}</p>
+
+        <h3>{{ filename2 }}</h3>
+        <p>{{ ab_sum2 }}</p>
+    </div>
+
+    <h2>Extractive Summaries with Details</h2>
+    <div>
+        <div>
+            <h3>Summary of {{ filename1 }}</h3>
+            <ul>
+                {% for item in sum1_data %}
+                    <li>
+                        {{ item.highlighted | safe }}
+                        <p>Entities: {{ item.entities }}</p>
+                        {% if item.source %}<p> (Paragraph {{ item.source }})</p>{% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h3>Summary of {{ filename2 }}</h3>
+            <ul>
+                {% for item in sum2_data %}
+                    <li>
+                        {{ item.highlighted | safe }}
+                        <p>Entities: {{ item.entities }}</p>
+                        {% if item.source %}<p>(Paragraph {{ item.source }})</p>{% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <h2>Named Entity Comparison</h2>
+    <div>
+        <div>
+            <div>Common Entities</div>
+            <ul>
+                {% for ent, label in common_ents %}
+                    <li>{{ ent }} ({{ label }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <div>Unique to {{ filename1 }}</div>
+            <ul>
+                {% for ent, label in unique_ents1 %}
+                    <li>{{ ent }} ({{ label }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <div>Unique to {{ filename2 }}</div>
+            <ul>
+                {% for ent, label in unique_ents2 %}
+                    <li>{{ ent }} ({{ label }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <h2>Keyphrase Comparison</h2>
+    <div>
+        <div>Common Keyphrases</div>
+        <ul>
+            {% for kp in common_keyphrases %}
+                <li>{{ kp }}</li>
+            {% endfor %}
+        </ul>
+        </div>
+        <div>Unique to {{ filename1 }}</div>
+        <ul>
+            {% for kp in unique_keyphrases1 %}
+                <li>{{ kp }}</li>
+            {% endfor %}
+        </ul>
+        </div>
+        <div>Unique to {{ filename2 }}</div>
+        <ul>
+            {% for kp in unique_keyphrases2 %}
+                <li>{{ kp }}</li>
+            {% endfor %}
+        </ul>
+        </div>
+    </div>
+
+    <h2>Readability Analysis</h2>
+    <p>{{ readability_desc1 }}</p>
+    <p>{{ readability_desc2 }}</p>
+
+    <h2>Sentiment Comparison</h2>
+    <p>{{ sent_desc1 }}</p>
+    <p>{{ sent_desc2 }}</p>
+    <div>
+        <div>
+            <h3>{{ filename1 }} (Avg: {{ avg_sent1|round(2) }})</h3>
+            <div>Positive Paragraphs</div>
+            <ul>
+                {% for para, text, score in pos1 %}
+                    <li>Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                {% endfor %}
+            </ul>
+            <div>Negative Paragraphs</div>
+            <ul>
+                {% for para, text, score in neg1 %}
+                    <li>Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h3>{{ filename2 }} (Avg: {{ avg_sent2|round(2) }})</h3>
+            <div>Positive Paragraphs</div>
+            <ul>
+                {% for para, text, score in pos2 %}
+                    <li>Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                {% endfor %}
+            </ul>
+            <div>Negative Paragraphs</div>
+            <ul>
+                {% for para, text, score in neg2 %}
+                    <li>Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <h2>Topic Modeling Comparison</h2>
+    <p>{{ topic_desc }}</p>
+    <table>
+        <tr>
+            <th>Topic</th>
+            <th>Words</th>
+            <th>{{ filename1 }} Weight</th>
+            <th>{{ filename2 }} Weight</th>
+        </tr>
+        {% for topic in topic_data %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ topic.words }}</td>
+                <td>{{ topic.weight1|round(2) }}</td>
+                <td>{{ topic.weight2|round(2) }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Similar Paragraphs (with Semantic Diff Highlights and Summaries)</h2>
+    {% for pair in similar_pairs %}
+        <div>
+            <h3>Para {{ pair.para1 }} ({{ filename1 }}) similar to Para {{ pair.para2 }} ({{ filename2 }}) (Score: {{ pair.score|round(2) }}) (Entity Overlap: {{ pair.overlap }})</h3>
+            <p>Detailed Comparison Summary: {{ pair.diff_summary }}</p>
+            {{ pair.diff_table | safe }}
+        </div>
+    {% endfor %}
+
+    <h2>Unique Content (Differences with Summaries)</h2>
+    <div>
+        <div>
+            <h3>Unique to {{ filename1 }}</h3>
+            <ul>
+                {% for item in unique1 %}
+                    <li>
+                        <p>Para {{ item.para }} (Sent: {{ item.sent|round(2) }}): {{ item.highlighted | safe }}</p>
+                        <p>Summary: {{ item.summary }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h3>Unique to {{ filename2 }}</h3>
+            <ul>
+                {% for item in unique2 %}
+                    <li>
+                        <p>Para {{ item.para }} (Sent: {{ item.sent|round(2) }}): {{ item.highlighted | safe }}</p>
+                        <p>Summary: {{ item.summary }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <a href="/">Back to Home</a>
+
+</body>
+</html>
