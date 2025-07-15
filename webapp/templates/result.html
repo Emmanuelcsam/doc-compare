@@ -1,0 +1,207 @@
+<!-- templates/result.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparison Results</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .side-by-side { display: flex; justify-content: space-between; }
+        .column { width: 48%; }
+        .fade-in { animation: fadeIn 1s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .list-group-item { transition: background-color 0.3s; }
+        .list-group-item:hover { background-color: #e9ecef; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4 fade-in">Comparison Results: final_test1.md vs final_test2.md</h1>
+        
+        <div class="side-by-side fade-in">
+            <div class="column">
+                <h2>Summary of First Document</h2>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- # Climate Change and Environmental Impact (Entities: #) (Paragraph 1)</li>
+                    
+                    <li class="list-group-item">- Climate change represents one of the most pressing challenges of our time. (Entities: one) (Paragraph 1)</li>
+                    
+                    <li class="list-group-item">- Melting polar ice caps threaten coastal communities worldwide. (Entities: None) (Paragraph 4)</li>
+                    
+                    <li class="list-group-item">- Extreme weather events are becoming more frequent and severe. (Entities: None) (Paragraph 4)</li>
+                    
+                    <li class="list-group-item">- Renewable energy sources like solar and wind power offer hope. (Entities: None) (Paragraph 6)</li>
+                    
+                    <li class="list-group-item">- Carbon capture technology shows promise for reducing atmospheric CO2. (Entities: CO2) (Paragraph 6)</li>
+                    
+                </ul>
+            </div>
+            <div class="column">
+                <h2>Summary of Second Document</h2>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- # Environmental Challenges and Global Response (Entities: #) (Paragraph 1)</li>
+                    
+                    <li class="list-group-item">- The Paris Climate Accord represents a global commitment to change. (Entities: Accord) (Paragraph 2)</li>
+                    
+                    <li class="list-group-item">- Arctic ice loss accelerates sea level rise dramatically. (Entities: Arctic ice) (Paragraph 4)</li>
+                    
+                    <li class="list-group-item">- Ocean chemistry changes harm coral reefs and fisheries. (Entities: None) (Paragraph 4)</li>
+                    
+                    <li class="list-group-item">- Solar and wind energy deployment continues expanding rapidly. (Entities: Solar) (Paragraph 6)</li>
+                    
+                    <li class="list-group-item">- Carbon sequestration methods are being developed and tested. (Entities: None) (Paragraph 6)</li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="mt-5 fade-in">Named Entity Comparison</h2>
+        <div class="row fade-in">
+            <div class="col-md-4">
+                <h3>Common Entities</h3>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- # (CARDINAL)</li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Unique to First</h3>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- ## key environmental effects
+
+melting polar ice (MONEY)</li>
+                    
+                    <li class="list-group-item">- ## solutions and mitigation
+
+renewable (MONEY)</li>
+                    
+                    <li class="list-group-item">- 1.5 degrees celsius (QUANTITY)</li>
+                    
+                    <li class="list-group-item">- co2 (PRODUCT)</li>
+                    
+                    <li class="list-group-item">- one (CARDINAL)</li>
+                    
+                    <li class="list-group-item">- the paris agreement (EVENT)</li>
+                    
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h3>Unique to Second</h3>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- ## environmental consequences
+
+arctic (MONEY)</li>
+                    
+                    <li class="list-group-item">- accord (PRODUCT)</li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="mt-5 fade-in">Sentiment Comparison</h2>
+        <div class="side-by-side fade-in">
+            <div class="column">
+                <h3>First Document (Avg: 0.14)</h3>
+                <h4>Positive Paragraphs</h4>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- Para 6: Renewable energy sources like solar and wind power offer hope. Carbon capture technology shows promi... (0.92)</li>
+                    
+                </ul>
+                <h4>Negative Paragraphs</h4>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- Para 4: Melting polar ice caps threaten coastal communities worldwide. Ocean acidification endangers marine ... (-0.67)</li>
+                    
+                </ul>
+            </div>
+            <div class="column">
+                <h3>Second Document (Avg: -0.05)</h3>
+                <h4>Positive Paragraphs</h4>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- Para 6: Solar and wind energy deployment continues expanding rapidly. Carbon sequestration methods are being... (0.75)</li>
+                    
+                </ul>
+                <h4>Negative Paragraphs</h4>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- Para 2: The climate crisis demands urgent action from all nations. Temperature increases threaten biodiversi... (-0.51)</li>
+                    
+                    <li class="list-group-item">- Para 4: Arctic ice loss accelerates sea level rise dramatically. Ocean chemistry changes harm coral reefs an... (-0.81)</li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+        <h2 class="mt-5 fade-in">Topic Modeling Comparison</h2>
+        <table class="table table-striped fade-in">
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Words</th>
+                    <th>First Weight</th>
+                    <th>Second Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+        
+        <h2 class="mt-5 fade-in">Similarities</h2>
+        <ul class="list-group fade-in">
+            
+        </ul>
+        
+        <div class="side-by-side mt-5 fade-in">
+            <div class="column">
+                <h2>Differences in First Document</h2>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- Para 1 (Sent: 0.0): # Climate Change and Environmental Impact</li>
+                    
+                    <li class="list-group-item">- Para 2 (Sent: 0.44): Climate change represents one of the most pressing challenges of our time. Rising global temperatures are causing widespread environmental disruption. The Paris Agreement aims to limit warming to 1.5 degrees Celsius.</li>
+                    
+                    <li class="list-group-item">- Para 3 (Sent: 0.0): ## Key Environmental Effects</li>
+                    
+                    <li class="list-group-item">- Para 4 (Sent: -0.67): Melting polar ice caps threaten coastal communities worldwide. Ocean acidification endangers marine ecosystems. Extreme weather events are becoming more frequent and severe.</li>
+                    
+                    <li class="list-group-item">- Para 5 (Sent: 0.18): ## Solutions and Mitigation</li>
+                    
+                    <li class="list-group-item">- Para 6 (Sent: 0.92): Renewable energy sources like solar and wind power offer hope. Carbon capture technology shows promise for reducing atmospheric CO2. International cooperation remains essential for meaningful progress.</li>
+                    
+                </ul>
+            </div>
+            <div class="column">
+                <h2>Differences in Second Document</h2>
+                <ul class="list-group">
+                    
+                    <li class="list-group-item">- Para 1 (Sent: 0.08): # Environmental Challenges and Global Response</li>
+                    
+                    <li class="list-group-item">- Para 2 (Sent: -0.51): The climate crisis demands urgent action from all nations. Temperature increases threaten biodiversity and human society. The Paris Climate Accord represents a global commitment to change.</li>
+                    
+                    <li class="list-group-item">- Para 3 (Sent: 0.0): ## Environmental Consequences</li>
+                    
+                    <li class="list-group-item">- Para 4 (Sent: -0.81): Arctic ice loss accelerates sea level rise dramatically. Ocean chemistry changes harm coral reefs and fisheries. Severe weather patterns disrupt agriculture and infrastructure.</li>
+                    
+                    <li class="list-group-item">- Para 5 (Sent: 0.18): ## Technological Solutions</li>
+                    
+                    <li class="list-group-item">- Para 6 (Sent: 0.75): Solar and wind energy deployment continues expanding rapidly. Carbon sequestration methods are being developed and tested. Global collaboration drives innovation in clean technology.</li>
+                    
+                </ul>
+            </div>
+        </div>
+        
+        <a href="/" class="btn btn-secondary mt-4">Back to Home</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
