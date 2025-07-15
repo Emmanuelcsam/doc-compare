@@ -1,9 +1,0 @@
-' recipe length = 8
-strRecipeDescription := <None>
-intRecipeNoOfSteps := 4
-intRecipeQty := 12
-intRecipeReworkStep := 1
-intRecipeMGRecipeList := 2
-rRecipeStepFixtureWeight := 0
-bRecipeStepMG_FiberLoadEnabled := 0
-strRecipeID := APM-HDC-5300
