@@ -18,43 +18,23 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4 fade-in">Comparison Results: final_test1.md vs final_test2.md</h1>
+        <h1 class="text-center mb-4 fade-in">Comparison Results: {{ filename1 }} vs {{ filename2 }}</h1>
         
         <div class="side-by-side fade-in">
             <div class="column">
                 <h2>Summary of First Document</h2>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- # Climate Change and Environmental Impact (Entities: #) (Paragraph 1)</li>
-                    
-                    <li class="list-group-item">- Climate change represents one of the most pressing challenges of our time. (Entities: one) (Paragraph 1)</li>
-                    
-                    <li class="list-group-item">- Melting polar ice caps threaten coastal communities worldwide. (Entities: None) (Paragraph 4)</li>
-                    
-                    <li class="list-group-item">- Extreme weather events are becoming more frequent and severe. (Entities: None) (Paragraph 4)</li>
-                    
-                    <li class="list-group-item">- Renewable energy sources like solar and wind power offer hope. (Entities: None) (Paragraph 6)</li>
-                    
-                    <li class="list-group-item">- Carbon capture technology shows promise for reducing atmospheric CO2. (Entities: CO2) (Paragraph 6)</li>
-                    
+                    {% for item in sum1_data %}
+                    <li class="list-group-item">- {{ item.text }} (Entities: {{ item.entities }}) {% if item.source %}(Paragraph {{ item.source }}){% endif %}</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="column">
                 <h2>Summary of Second Document</h2>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- # Environmental Challenges and Global Response (Entities: #) (Paragraph 1)</li>
-                    
-                    <li class="list-group-item">- The Paris Climate Accord represents a global commitment to change. (Entities: Accord) (Paragraph 2)</li>
-                    
-                    <li class="list-group-item">- Arctic ice loss accelerates sea level rise dramatically. (Entities: Arctic ice) (Paragraph 4)</li>
-                    
-                    <li class="list-group-item">- Ocean chemistry changes harm coral reefs and fisheries. (Entities: None) (Paragraph 4)</li>
-                    
-                    <li class="list-group-item">- Solar and wind energy deployment continues expanding rapidly. (Entities: Solar) (Paragraph 6)</li>
-                    
-                    <li class="list-group-item">- Carbon sequestration methods are being developed and tested. (Entities: None) (Paragraph 6)</li>
-                    
+                    {% for item in sum2_data %}
+                    <li class="list-group-item">- {{ item.text }} (Entities: {{ item.entities }}) {% if item.source %}(Paragraph {{ item.source }}){% endif %}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -64,43 +44,25 @@
             <div class="col-md-4">
                 <h3>Common Entities</h3>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- # (CARDINAL)</li>
-                    
+                    {% for ent, label in common_ents %}
+                    <li class="list-group-item">- {{ ent }} ({{ label }})</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="col-md-4">
                 <h3>Unique to First</h3>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- ## key environmental effects
-
-melting polar ice (MONEY)</li>
-                    
-                    <li class="list-group-item">- ## solutions and mitigation
-
-renewable (MONEY)</li>
-                    
-                    <li class="list-group-item">- 1.5 degrees celsius (QUANTITY)</li>
-                    
-                    <li class="list-group-item">- co2 (PRODUCT)</li>
-                    
-                    <li class="list-group-item">- one (CARDINAL)</li>
-                    
-                    <li class="list-group-item">- the paris agreement (EVENT)</li>
-                    
+                    {% for ent, label in unique_ents1 %}
+                    <li class="list-group-item">- {{ ent }} ({{ label }})</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="col-md-4">
                 <h3>Unique to Second</h3>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- ## environmental consequences
-
-arctic (MONEY)</li>
-                    
-                    <li class="list-group-item">- accord (PRODUCT)</li>
-                    
+                    {% for ent, label in unique_ents2 %}
+                    <li class="list-group-item">- {{ ent }} ({{ label }})</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -108,35 +70,33 @@ arctic (MONEY)</li>
         <h2 class="mt-5 fade-in">Sentiment Comparison</h2>
         <div class="side-by-side fade-in">
             <div class="column">
-                <h3>First Document (Avg: 0.14)</h3>
+                <h3>First Document (Avg: {{ avg_sent1|round(2) }})</h3>
                 <h4>Positive Paragraphs</h4>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- Para 6: Renewable energy sources like solar and wind power offer hope. Carbon capture technology shows promi... (0.92)</li>
-                    
+                    {% for para, text, score in pos1 %}
+                    <li class="list-group-item">- Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                    {% endfor %}
                 </ul>
                 <h4>Negative Paragraphs</h4>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- Para 4: Melting polar ice caps threaten coastal communities worldwide. Ocean acidification endangers marine ... (-0.67)</li>
-                    
+                    {% for para, text, score in neg1 %}
+                    <li class="list-group-item">- Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="column">
-                <h3>Second Document (Avg: -0.05)</h3>
+                <h3>Second Document (Avg: {{ avg_sent2|round(2) }})</h3>
                 <h4>Positive Paragraphs</h4>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- Para 6: Solar and wind energy deployment continues expanding rapidly. Carbon sequestration methods are being... (0.75)</li>
-                    
+                    {% for para, text, score in pos2 %}
+                    <li class="list-group-item">- Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                    {% endfor %}
                 </ul>
                 <h4>Negative Paragraphs</h4>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- Para 2: The climate crisis demands urgent action from all nations. Temperature increases threaten biodiversi... (-0.51)</li>
-                    
-                    <li class="list-group-item">- Para 4: Arctic ice loss accelerates sea level rise dramatically. Ocean chemistry changes harm coral reefs an... (-0.81)</li>
-                    
+                    {% for para, text, score in neg2 %}
+                    <li class="list-group-item">- Para {{ para }}: {{ text }}... ({{ score|round(2) }})</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
@@ -152,50 +112,43 @@ arctic (MONEY)</li>
                 </tr>
             </thead>
             <tbody>
-                
+                {% for topic in topic_data %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ topic.words }}</td>
+                    <td>{{ topic.weight1|round(2) }}</td>
+                    <td>{{ topic.weight2|round(2) }}</td>
+                </tr>
+                {% endfor %}
             </tbody>
         </table>
         
         <h2 class="mt-5 fade-in">Similarities</h2>
         <ul class="list-group fade-in">
-            
+            {% for pair in similar_pairs %}
+            <li class="list-group-item">
+                - Para {{ pair.para1 }} (First) similar to Para {{ pair.para2 }} (Second) (Score: {{ pair.score|round(2) }}) (Overlap: {{ pair.overlap }})
+                <br>First: {{ pair.text1 }}
+                <br>Second: {{ pair.text2 }}
+            </li>
+            {% endfor %}
         </ul>
         
         <div class="side-by-side mt-5 fade-in">
             <div class="column">
                 <h2>Differences in First Document</h2>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- Para 1 (Sent: 0.0): # Climate Change and Environmental Impact</li>
-                    
-                    <li class="list-group-item">- Para 2 (Sent: 0.44): Climate change represents one of the most pressing challenges of our time. Rising global temperatures are causing widespread environmental disruption. The Paris Agreement aims to limit warming to 1.5 degrees Celsius.</li>
-                    
-                    <li class="list-group-item">- Para 3 (Sent: 0.0): ## Key Environmental Effects</li>
-                    
-                    <li class="list-group-item">- Para 4 (Sent: -0.67): Melting polar ice caps threaten coastal communities worldwide. Ocean acidification endangers marine ecosystems. Extreme weather events are becoming more frequent and severe.</li>
-                    
-                    <li class="list-group-item">- Para 5 (Sent: 0.18): ## Solutions and Mitigation</li>
-                    
-                    <li class="list-group-item">- Para 6 (Sent: 0.92): Renewable energy sources like solar and wind power offer hope. Carbon capture technology shows promise for reducing atmospheric CO2. International cooperation remains essential for meaningful progress.</li>
-                    
+                    {% for para, text, sent in unique1 %}
+                    <li class="list-group-item">- Para {{ para }} (Sent: {{ sent|round(2) }}): {{ text }}</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="column">
                 <h2>Differences in Second Document</h2>
                 <ul class="list-group">
-                    
-                    <li class="list-group-item">- Para 1 (Sent: 0.08): # Environmental Challenges and Global Response</li>
-                    
-                    <li class="list-group-item">- Para 2 (Sent: -0.51): The climate crisis demands urgent action from all nations. Temperature increases threaten biodiversity and human society. The Paris Climate Accord represents a global commitment to change.</li>
-                    
-                    <li class="list-group-item">- Para 3 (Sent: 0.0): ## Environmental Consequences</li>
-                    
-                    <li class="list-group-item">- Para 4 (Sent: -0.81): Arctic ice loss accelerates sea level rise dramatically. Ocean chemistry changes harm coral reefs and fisheries. Severe weather patterns disrupt agriculture and infrastructure.</li>
-                    
-                    <li class="list-group-item">- Para 5 (Sent: 0.18): ## Technological Solutions</li>
-                    
-                    <li class="list-group-item">- Para 6 (Sent: 0.75): Solar and wind energy deployment continues expanding rapidly. Carbon sequestration methods are being developed and tested. Global collaboration drives innovation in clean technology.</li>
-                    
+                    {% for para, text, sent in unique2 %}
+                    <li class="list-group-item">- Para {{ para }} (Sent: {{ sent|round(2) }}): {{ text }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>

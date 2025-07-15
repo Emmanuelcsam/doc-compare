@@ -162,3 +162,170 @@
 2025-07-15 07:56:36,146 - INFO - Extracting text from uploads/final_test1.md (extension: .md)
 2025-07-15 07:56:36,148 - INFO - Extracting text from uploads/final_test2.md (extension: .md)
 2025-07-15 07:56:36,537 - INFO - 127.0.0.1 - - [15/Jul/2025 07:56:36] "POST / HTTP/1.1" 200 -
+2025-07-15 08:19:55,879 - INFO - Starting the document comparison webapp.
+2025-07-15 08:19:55,879 - INFO - Checking and installing/upgrading package: flask
+2025-07-15 08:19:59,909 - INFO - Successfully installed/upgraded flask.
+2025-07-15 08:19:59,972 - INFO - PyPDF2 is already installed.
+2025-07-15 08:19:59,972 - INFO - Checking and installing/upgrading package: PyPDF2
+2025-07-15 08:20:03,895 - INFO - Successfully installed/upgraded PyPDF2.
+2025-07-15 08:20:03,973 - INFO - docx is already installed.
+2025-07-15 08:20:03,974 - INFO - Checking and installing/upgrading package: python-docx
+2025-07-15 08:20:07,952 - INFO - Successfully installed/upgraded python-docx.
+2025-07-15 08:20:07,953 - INFO - sumy is already installed.
+2025-07-15 08:20:07,953 - INFO - Checking and installing/upgrading package: sumy
+2025-07-15 08:20:12,072 - INFO - Successfully installed/upgraded sumy.
+2025-07-15 08:20:13,388 - INFO - NumExpr defaulting to 8 threads.
+2025-07-15 08:20:13,970 - INFO - nltk is already installed.
+2025-07-15 08:20:13,970 - INFO - Checking and installing/upgrading package: nltk
+2025-07-15 08:20:18,066 - INFO - Successfully installed/upgraded nltk.
+2025-07-15 08:20:18,068 - INFO - sklearn is already installed.
+2025-07-15 08:20:18,069 - INFO - Checking and installing/upgrading package: scikit-learn
+2025-07-15 08:20:22,504 - INFO - Successfully installed/upgraded scikit-learn.
+2025-07-15 08:20:27,698 - INFO - spacy is already installed.
+2025-07-15 08:20:27,698 - INFO - Checking and installing/upgrading package: spacy
+2025-07-15 08:20:32,153 - INFO - Successfully installed/upgraded spacy.
+2025-07-15 08:20:33,635 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-15 08:20:33,635 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-15 08:20:33,646 - INFO -  * Restarting with watchdog (inotify)
+2025-07-15 08:20:33,941 - INFO - Starting the document comparison webapp.
+2025-07-15 08:20:33,941 - INFO - Checking and installing/upgrading package: flask
+2025-07-15 08:20:38,180 - INFO - Successfully installed/upgraded flask.
+2025-07-15 08:20:38,236 - INFO - PyPDF2 is already installed.
+2025-07-15 08:20:38,236 - INFO - Checking and installing/upgrading package: PyPDF2
+2025-07-15 08:20:42,319 - INFO - Successfully installed/upgraded PyPDF2.
+2025-07-15 08:20:42,406 - INFO - docx is already installed.
+2025-07-15 08:20:42,407 - INFO - Checking and installing/upgrading package: python-docx
+2025-07-15 08:20:46,648 - INFO - Successfully installed/upgraded python-docx.
+2025-07-15 08:20:46,649 - INFO - sumy is already installed.
+2025-07-15 08:20:46,649 - INFO - Checking and installing/upgrading package: sumy
+2025-07-15 08:20:51,083 - INFO - Successfully installed/upgraded sumy.
+2025-07-15 08:20:52,575 - INFO - NumExpr defaulting to 8 threads.
+2025-07-15 08:20:53,211 - INFO - nltk is already installed.
+2025-07-15 08:20:53,211 - INFO - Checking and installing/upgrading package: nltk
+2025-07-15 08:20:57,611 - INFO - Successfully installed/upgraded nltk.
+2025-07-15 08:20:57,613 - INFO - sklearn is already installed.
+2025-07-15 08:20:57,613 - INFO - Checking and installing/upgrading package: scikit-learn
+2025-07-15 08:21:02,041 - INFO - Successfully installed/upgraded scikit-learn.
+2025-07-15 08:21:07,488 - INFO - spacy is already installed.
+2025-07-15 08:21:07,488 - INFO - Checking and installing/upgrading package: spacy
+2025-07-15 08:21:11,841 - INFO - Successfully installed/upgraded spacy.
+2025-07-15 08:21:13,329 - WARNING -  * Debugger is active!
+2025-07-15 08:21:13,333 - INFO -  * Debugger PIN: 127-251-612
+2025-07-15 08:21:15,280 - INFO - 127.0.0.1 - - [15/Jul/2025 08:21:15] "GET / HTTP/1.1" 200 -
+2025-07-15 08:21:26,893 - INFO - 127.0.0.1 - - [15/Jul/2025 08:21:26] "GET / HTTP/1.1" 200 -
+2025-07-15 08:21:27,695 - INFO - 127.0.0.1 - - [15/Jul/2025 08:21:27] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-15 08:22:01,254 - INFO - Extracting text from uploads/test-docA.txt (extension: .txt)
+2025-07-15 08:22:01,256 - INFO - Extracting text from uploads/test-docB.txt (extension: .txt)
+2025-07-15 08:22:04,127 - INFO - 127.0.0.1 - - [15/Jul/2025 08:22:04] "POST / HTTP/1.1" 200 -
+2025-07-15 08:22:40,309 - INFO - 127.0.0.1 - - [15/Jul/2025 08:22:40] "GET / HTTP/1.1" 200 -
+2025-07-15 08:22:57,828 - INFO - Extracting text from uploads/test-docA.txt (extension: .txt)
+2025-07-15 08:22:57,830 - INFO - Extracting text from uploads/test-docB.txt (extension: .txt)
+2025-07-15 08:23:00,577 - INFO - 127.0.0.1 - - [15/Jul/2025 08:23:00] "POST / HTTP/1.1" 200 -
+2025-07-15 08:23:12,940 - INFO - Starting the document comparison webapp.
+2025-07-15 08:23:12,940 - INFO - Checking and installing/upgrading package: flask
+2025-07-15 08:23:16,945 - INFO - Successfully installed/upgraded flask.
+2025-07-15 08:23:17,001 - INFO - PyPDF2 is already installed.
+2025-07-15 08:23:17,001 - INFO - Checking and installing/upgrading package: PyPDF2
+2025-07-15 08:23:21,019 - INFO - Successfully installed/upgraded PyPDF2.
+2025-07-15 08:23:21,100 - INFO - docx is already installed.
+2025-07-15 08:23:21,100 - INFO - Checking and installing/upgrading package: python-docx
+2025-07-15 08:23:25,203 - INFO - Successfully installed/upgraded python-docx.
+2025-07-15 08:23:25,204 - INFO - sumy is already installed.
+2025-07-15 08:23:25,204 - INFO - Checking and installing/upgrading package: sumy
+2025-07-15 08:23:29,423 - INFO - Successfully installed/upgraded sumy.
+2025-07-15 08:23:30,729 - INFO - NumExpr defaulting to 8 threads.
+2025-07-15 08:23:31,312 - INFO - nltk is already installed.
+2025-07-15 08:23:31,313 - INFO - Checking and installing/upgrading package: nltk
+2025-07-15 08:23:35,231 - INFO - Successfully installed/upgraded nltk.
+2025-07-15 08:23:35,233 - INFO - sklearn is already installed.
+2025-07-15 08:23:35,233 - INFO - Checking and installing/upgrading package: scikit-learn
+2025-07-15 08:23:39,336 - INFO - Successfully installed/upgraded scikit-learn.
+2025-07-15 08:23:44,200 - INFO - spacy is already installed.
+2025-07-15 08:23:44,200 - INFO - Checking and installing/upgrading package: spacy
+2025-07-15 08:23:48,441 - INFO - Successfully installed/upgraded spacy.
+2025-07-15 08:23:50,011 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-15 08:23:50,011 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-15 08:23:50,023 - INFO -  * Restarting with watchdog (inotify)
+2025-07-15 08:23:50,311 - INFO - Starting the document comparison webapp.
+2025-07-15 08:23:50,311 - INFO - Checking and installing/upgrading package: flask
+2025-07-15 08:23:54,301 - INFO - Successfully installed/upgraded flask.
+2025-07-15 08:23:54,356 - INFO - PyPDF2 is already installed.
+2025-07-15 08:23:54,357 - INFO - Checking and installing/upgrading package: PyPDF2
+2025-07-15 08:23:58,284 - INFO - Successfully installed/upgraded PyPDF2.
+2025-07-15 08:23:58,361 - INFO - docx is already installed.
+2025-07-15 08:23:58,361 - INFO - Checking and installing/upgrading package: python-docx
+2025-07-15 08:24:02,255 - INFO - Successfully installed/upgraded python-docx.
+2025-07-15 08:24:02,256 - INFO - sumy is already installed.
+2025-07-15 08:24:02,256 - INFO - Checking and installing/upgrading package: sumy
+2025-07-15 08:24:06,150 - INFO - Successfully installed/upgraded sumy.
+2025-07-15 08:24:07,427 - INFO - NumExpr defaulting to 8 threads.
+2025-07-15 08:24:07,990 - INFO - nltk is already installed.
+2025-07-15 08:24:07,990 - INFO - Checking and installing/upgrading package: nltk
+2025-07-15 08:24:12,015 - INFO - Successfully installed/upgraded nltk.
+2025-07-15 08:24:12,017 - INFO - sklearn is already installed.
+2025-07-15 08:24:12,017 - INFO - Checking and installing/upgrading package: scikit-learn
+2025-07-15 08:24:16,080 - INFO - Successfully installed/upgraded scikit-learn.
+2025-07-15 08:24:20,961 - INFO - spacy is already installed.
+2025-07-15 08:24:20,962 - INFO - Checking and installing/upgrading package: spacy
+2025-07-15 08:24:25,201 - INFO - Successfully installed/upgraded spacy.
+2025-07-15 08:24:26,638 - WARNING -  * Debugger is active!
+2025-07-15 08:24:26,642 - INFO -  * Debugger PIN: 127-251-612
+2025-07-15 08:24:41,438 - INFO - 127.0.0.1 - - [15/Jul/2025 08:24:41] "GET / HTTP/1.1" 200 -
+2025-07-15 08:42:34,464 - INFO - Starting the document comparison webapp.
+2025-07-15 08:42:34,464 - INFO - Checking and installing/upgrading package: flask
+2025-07-15 08:42:38,475 - INFO - Successfully installed/upgraded flask.
+2025-07-15 08:42:38,535 - INFO - PyPDF2 is already installed.
+2025-07-15 08:42:38,536 - INFO - Checking and installing/upgrading package: PyPDF2
+2025-07-15 08:42:42,532 - INFO - Successfully installed/upgraded PyPDF2.
+2025-07-15 08:42:42,616 - INFO - docx is already installed.
+2025-07-15 08:42:42,616 - INFO - Checking and installing/upgrading package: python-docx
+2025-07-15 08:42:46,446 - INFO - Successfully installed/upgraded python-docx.
+2025-07-15 08:42:46,447 - INFO - sumy is already installed.
+2025-07-15 08:42:46,448 - INFO - Checking and installing/upgrading package: sumy
+2025-07-15 08:42:50,444 - INFO - Successfully installed/upgraded sumy.
+2025-07-15 08:42:51,757 - INFO - NumExpr defaulting to 8 threads.
+2025-07-15 08:42:52,332 - INFO - nltk is already installed.
+2025-07-15 08:42:52,332 - INFO - Checking and installing/upgrading package: nltk
+2025-07-15 08:42:56,314 - INFO - Successfully installed/upgraded nltk.
+2025-07-15 08:42:56,316 - INFO - sklearn is already installed.
+2025-07-15 08:42:56,316 - INFO - Checking and installing/upgrading package: scikit-learn
+2025-07-15 08:43:00,408 - INFO - Successfully installed/upgraded scikit-learn.
+2025-07-15 08:43:05,296 - INFO - spacy is already installed.
+2025-07-15 08:43:05,296 - INFO - Checking and installing/upgrading package: spacy
+2025-07-15 08:43:09,584 - INFO - Successfully installed/upgraded spacy.
+2025-07-15 08:43:10,997 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-07-15 08:43:10,997 - INFO - [33mPress CTRL+C to quit[0m
+2025-07-15 08:43:11,006 - INFO -  * Restarting with watchdog (inotify)
+2025-07-15 08:43:11,290 - INFO - Starting the document comparison webapp.
+2025-07-15 08:43:11,290 - INFO - Checking and installing/upgrading package: flask
+2025-07-15 08:43:15,256 - INFO - Successfully installed/upgraded flask.
+2025-07-15 08:43:15,314 - INFO - PyPDF2 is already installed.
+2025-07-15 08:43:15,315 - INFO - Checking and installing/upgrading package: PyPDF2
+2025-07-15 08:43:19,360 - INFO - Successfully installed/upgraded PyPDF2.
+2025-07-15 08:43:19,438 - INFO - docx is already installed.
+2025-07-15 08:43:19,438 - INFO - Checking and installing/upgrading package: python-docx
+2025-07-15 08:43:23,361 - INFO - Successfully installed/upgraded python-docx.
+2025-07-15 08:43:23,363 - INFO - sumy is already installed.
+2025-07-15 08:43:23,363 - INFO - Checking and installing/upgrading package: sumy
+2025-07-15 08:43:27,291 - INFO - Successfully installed/upgraded sumy.
+2025-07-15 08:43:28,578 - INFO - NumExpr defaulting to 8 threads.
+2025-07-15 08:43:29,136 - INFO - nltk is already installed.
+2025-07-15 08:43:29,136 - INFO - Checking and installing/upgrading package: nltk
+2025-07-15 08:43:33,049 - INFO - Successfully installed/upgraded nltk.
+2025-07-15 08:43:33,051 - INFO - sklearn is already installed.
+2025-07-15 08:43:33,052 - INFO - Checking and installing/upgrading package: scikit-learn
+2025-07-15 08:43:37,178 - INFO - Successfully installed/upgraded scikit-learn.
+2025-07-15 08:43:42,096 - INFO - spacy is already installed.
+2025-07-15 08:43:42,096 - INFO - Checking and installing/upgrading package: spacy
+2025-07-15 08:43:46,302 - INFO - Successfully installed/upgraded spacy.
+2025-07-15 08:43:47,778 - WARNING -  * Debugger is active!
+2025-07-15 08:43:47,781 - INFO -  * Debugger PIN: 100-608-637
+2025-07-15 08:43:55,265 - INFO - 127.0.0.1 - - [15/Jul/2025 08:43:55] "GET / HTTP/1.1" 200 -
+2025-07-15 08:43:56,034 - INFO - 127.0.0.1 - - [15/Jul/2025 08:43:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-07-15 08:43:56,178 - INFO - 127.0.0.1 - - [15/Jul/2025 08:43:56] "GET / HTTP/1.1" 200 -
+2025-07-15 08:44:19,295 - INFO - Extracting text from uploads/test-docA.txt (extension: .txt)
+2025-07-15 08:44:19,298 - INFO - Extracting text from uploads/test-docB.txt (extension: .txt)
+2025-07-15 08:44:22,096 - INFO - 127.0.0.1 - - [15/Jul/2025 08:44:22] "POST / HTTP/1.1" 200 -

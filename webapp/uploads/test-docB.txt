@@ -1,0 +1,99 @@
+Document 2: Image Processing Fundamentals Using OpenCV and PyTorch (Version B)
+Introduction
+Image processing plays a key role in computer vision applications, allowing systems to analyze and transform visual information. This tutorial covers using OpenCV for essential image tasks and PyTorch for sophisticated deep learning approaches. OpenCV excels in classical image handling, whereas PyTorch is ideal for tensor operations and neural network models in areas like segmentation or classification.
+
+Loading and Displaying Images with OpenCV
+Begin by loading an image via OpenCV. Below is a straightforward code snippet:
+
+python
+
+Collapse
+
+Wrap
+
+Run
+
+Copy
+import cv2
+
+# Load the image in grayscale mode for simplicity
+image = cv2.imread('example.jpg', cv2.IMREAD_GRAYSCALE)
+
+# Display the image in a window
+cv2.imshow('Original Image', image)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
+This loads the image in grayscale, which can be useful for certain analyses. Note that OpenCV defaults to BGR for color images, so conversions may be needed.
+
+Basic Operations: Resizing and Filtering
+Resizing images is essential for standardization. OpenCV offers robust tools:
+
+python
+
+Collapse
+
+Wrap
+
+Run
+
+Copy
+# Resize the image to a fixed size of 256x256 pixels
+resized = cv2.resize(image, (256, 256), interpolation=cv2.INTER_CUBIC)
+
+# Apply a median blur filter to remove salt-and-pepper noise
+blurred = cv2.medianBlur(resized, 5)
+INTER_CUBIC interpolation provides higher quality for upscaling. Median blur is effective against noise while maintaining edge sharpness.
+
+Converting to PyTorch Tensors
+To leverage deep learning, transform the image into a PyTorch tensor. Tensors support efficient computations, especially on GPUs.
+
+python
+
+Collapse
+
+Wrap
+
+Run
+
+Copy
+import torch
+import numpy as np
+
+# If grayscale, add channel dimension; normalize to [0,1]
+tensor = torch.from_numpy(blurred).unsqueeze(0).float() / 255.0
+For grayscale images, we add a channel dimension. Normalization ensures compatibility with neural network inputs.
+
+Advanced Processing: Implementing a Basic CNN in PyTorch
+With PyTorch, constructing convolutional neural networks (CNNs) for image enhancement or feature detection is straightforward.
+
+python
+
+Collapse
+
+Wrap
+
+Run
+
+Copy
+import torch.nn as nn
+
+class BasicCNN(nn.Module):
+    def __init__(self):
+        super(BasicCNN, self).__init__()
+        self.conv1 = nn.Conv2d(1, 32, kernel_size=3, padding=1)  # Adjusted for grayscale
+        self.relu = nn.ReLU()
+        self.pool = nn.MaxPool2d(2, 2)
+
+    def forward(self, x):
+        x = self.conv1(x)
+        x = self.relu(x)
+        x = self.pool(x)
+        return x
+
+# Create the model and apply it to the tensor
+model = BasicCNN()
+output = model(tensor.unsqueeze(0))  # Add batch dimension if needed
+This CNN uses a single convolution layer with ReLU and pooling, tailored for grayscale inputs. It's foundational for building advanced image processing systems.
+
+Conclusion
+Integrating OpenCV with PyTorch creates a versatile pipeline: OpenCV for initial manipulations and PyTorch for intelligent processing. Try varying parameters and architectures to observe differences in performance.
