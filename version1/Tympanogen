@@ -1,0 +1,5 @@
+' recipe length = 4
+strRecipeDescription := <None>
+intRecipeNoOfSteps := 1
+intRecipeQty := 12
+intRecipeReworkStep := 1
